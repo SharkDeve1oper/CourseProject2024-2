@@ -4,71 +4,12 @@ from tkinter import messagebox
 
 # Функция для нахождения обратной матрицы методом Гаусса-Жордана
 def gauss_jordan_inverse(matrix):
-    n = len(matrix)
-    # Создаем расширенную матрицу [A | I]
-    for i in range(n):
-        matrix[i] += [float(i == j) for j in range(n)]
-
-    # Проходим по каждой строке матрицы
-    for i in range(n):
-        if matrix[i][i] == 0:
-            found = False
-            for k in range(i + 1, n):
-                if matrix[k][i] != 0:
-                    matrix[i], matrix[k] = matrix[k], matrix[i]
-                    found = True
-                    break
-            if not found:
-                return None
-
-        # Нормализуем текущую строку
-        pivot = matrix[i][i]
-        for j in range(2 * n):
-            matrix[i][j] /= pivot
-
-        # Преобразуем другие строки
-        for j in range(n):
-            if i != j:
-                factor = matrix[j][i]
-                for k in range(2 * n):
-                    matrix[j][k] -= factor * matrix[i][k]
-
-    # Возвращаем правую часть матрицы (обратную)
-    inverse_matrix = [row[n:] for row in matrix]
-    return inverse_matrix
+    pass
 
 
 # Функция для получения элементов матрицы и вычисления обратной
 def calculate_inverse():
-    try:
-        n = int(size_entry.get())
-        if n < 2 or n > 5:
-            messagebox.showerror("Ошибка", "Размер матрицы должен быть от 2 до 5.")
-            return
-        matrix = []
-        for i in range(n):
-            row = []
-            for j in range(n):
-                entry = entries[i][j]
-                value = float(entry.get())
-                row.append(value)
-            matrix.append(row)
-        inverse = gauss_jordan_inverse(matrix)
-        if inverse is None:
-            messagebox.showerror("Ошибка", "Матрица вырожденная и не имеет обратной.")
-            return
-        # Отображаем обратную матрицу
-        result_window = tk.Toplevel(root)
-        result_window.title("Обратная матрица")
-        result_window.geometry(f"{300 + n * 50}x{300 + n * 50}")
-        for i in range(n):
-            for j in range(n):
-                value = round(inverse[i][j], 4)
-                label = tk.Label(result_window, text=str(value), width=10, borderwidth=1, relief="solid",
-                                 font=("Arial", 13))
-                label.grid(row=i, column=j)
-    except ValueError:
-        messagebox.showerror("Ошибка", "Пожалуйста, введите корректные числовые значения.")
+    pass
 
 
 # Функция для создания полей ввода матрицы
